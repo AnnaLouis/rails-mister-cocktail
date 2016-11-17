@@ -1,0 +1,7 @@
+<h1> Want to change the dose ? </h1>
+
+<%= form_for(@dose) do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>

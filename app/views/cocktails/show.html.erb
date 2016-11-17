@@ -1,0 +1,10 @@
+<h1> Want this one ? </h1>
+
+<h2> <%= @cocktail.name %> </h2>
+<p> <%= @cocktail.ingredient.name %> - <%= @cocktail.dose.description %> </p>
+
+<% link_to "Want to change the dose ?", cocktails_path %>
+
+<% link_to "Go back to the list ?", cocktails_path %>
+
+
