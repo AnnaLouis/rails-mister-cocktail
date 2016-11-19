@@ -1,6 +1,24 @@
-<h1> See all cocktails available here ! </h1>
 
-<% @cocktails.each do |cocktail| %>
-  <%= link_to @cocktail.name, cocktail_path(@cocktail) %>
-<% end %>
+<div class="container" class="text-center">
+  <h1> See all cocktails available here ! </h1>
+  <h3 class="btn btn-primary" > <%= link_to "Create your own cocktail", new_cocktail_path %> </h3>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card text-center">
+          <div class="card-header" style="background-image: url('<%= image_path cocktail.photo.path%>')">
+          </div>
+
+          <div class="card-body">
+            <%= link_to cocktail.name, cocktail_path(cocktail) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 

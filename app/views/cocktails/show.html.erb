@@ -1,10 +1,40 @@
-<h1> Want this one ? </h1>
+<div class="container class="text-center">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offsert-3">
+      <h1> Want this <%= @cocktail.name %> ? </h1>
+      <h2> Our magic recipy : </h2>
+      <ul>
+        <% @cocktail.doses.each do |dose| %>
+        <li>
+          <%= dose.description %> of <%= dose.ingredient.name %> - <%= link_to "Delete this one", cocktail_dose_path(@cocktail, dose), method: :delete %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<h2> <%= @cocktail.name %> </h2>
-<p> <%= @cocktail.ingredient.name %> - <%= @cocktail.dose.description %> </p>
+<% if @cocktail.photo? %>
+  <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
+<% end %>
 
-<% link_to "Want to change the dose ?", cocktails_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offsert-3">
+      <p> Want to add a dose for <%= @cocktail.name %> ? </p>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description, :placeholder => "2cl ? 3l ? 8ml ?" %>
+        <%= f.association :ingredient %>
+        <%= f.submit "Add dose !" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<% link_to "Go back to the list ?", cocktails_path %>
-
+<div class="container">
+  <div class="row">
+    <p> <%= link_to "Back to the list.", cocktails_path %> </p>
+    <p> <%= link_to "Delete this cocktail.", cocktail_path(@cocktail), method: :delete %> </p>
+  </div>
+</div>
 
